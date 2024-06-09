@@ -4,20 +4,20 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Comparator;
+
 import shapes.*;
 import comparators.*;
 import utilities.*;
+
 import java.util.Arrays;
 
-public class AppDriver
-{
+public class AppDriver {
 
-	public static void main( String[] args )
-	{
-		String fileName = null;
+    public static void main(String[] args) {
+        String fileName = null;
         String compareType = null;
         String sortAlgorithm = null;
-        
+
         for (String arg : args) {
             if (arg.startsWith("-f") || arg.startsWith("-F")) {
                 fileName = arg.substring(2);
@@ -27,17 +27,17 @@ public class AppDriver
                 sortAlgorithm = arg.substring(2);
             }
         }
-        
+
         if (fileName == null || compareType == null || sortAlgorithm == null) {
             System.out.println("Usage: java -jar Sort.jar -f<file_name> -t<comparison type> -s<sorting algorithm>");
             return;
         }
-        
+
         ThreeDShape[] shapes = readShapesFromFile(fileName);
         if (shapes == null) {
             return;
         }
-        
+
         Comparator<ThreeDShape> comparator;
         switch (compareType.toLowerCase()) {
             case "h":
@@ -53,17 +53,17 @@ public class AppDriver
                 System.out.println("Unknown compare type: " + compareType);
                 return;
         }
-        
+
         sortShapes(shapes, comparator, sortAlgorithm);
-        
+
         printSortedShapes(shapes);
-	}
-	
-	private static ThreeDShape[] readShapesFromFile(String fileName) {
+    }
+
+    private static ThreeDShape[] readShapesFromFile(String fileName) {
         try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
             int numShapes = Integer.parseInt(br.readLine().trim());
             ThreeDShape[] shapes = new ThreeDShape[numShapes];
-            
+
             for (int i = 0; i < numShapes; i++) {
                 String[] tokens = br.readLine().split(" ");
                 String shapeType = tokens[0];
@@ -98,13 +98,14 @@ public class AppDriver
                 }
             }
             return shapes;
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             e.printStackTrace();
             return null;
         }
     }
-	
-	private static void sortShapes(ThreeDShape[] shapes, Comparator<ThreeDShape> comparator, String sortAlgorithm) {
+
+    private static void sortShapes(ThreeDShape[] shapes, Comparator<ThreeDShape> comparator, String sortAlgorithm) {
         long startTime = System.currentTimeMillis();
         switch (sortAlgorithm.toLowerCase()) {
             case "b":
@@ -132,6 +133,7 @@ public class AppDriver
         long endTime = System.currentTimeMillis();
         System.out.println("Sorting time: " + (endTime - startTime) + " milliseconds");
     }
+
     private static void printSortedShapes(ThreeDShape[] shapes) {
         int length = shapes.length;
         System.out.println("First sorted shape: " + shapes[0]);

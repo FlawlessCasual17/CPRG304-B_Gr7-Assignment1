@@ -23,10 +23,9 @@ public class Cylinder extends ThreeDShape {
     public double getVolume() {
         return getBaseArea() * height;
     }
-    
+
     @Override
     public String toString() {
-        return String.format("Cylinder [radius=%.2f, height=%.2f, base area=%.2f, volume=%.2f]",
-                radius, getHeight(), getBaseArea(), getVolume());
+        return String.format("Cylinder [radius=%.2f, height=%.2f, base area=%.2f, volume=%.2f]", radius, getHeight(), getBaseArea(), getVolume());
     }
 }

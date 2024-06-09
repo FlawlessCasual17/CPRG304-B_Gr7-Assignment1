@@ -23,10 +23,9 @@ public class Pyramid extends ThreeDShape {
     public double getVolume() {
         return (1.0 / 3) * getBaseArea() * height;
     }
-    
+
     @Override
     public String toString() {
-        return String.format("Pyramid [edge length=%.2f, height=%.2f, base area=%.2f, volume=%.2f]",
-                             edgeLength, getHeight(), getBaseArea(), getVolume());
+        return String.format("Pyramid [edge length=%.2f, height=%.2f, base area=%.2f, volume=%.2f]", edgeLength, getHeight(), getBaseArea(), getVolume());
     }
 }

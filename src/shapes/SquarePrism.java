@@ -23,9 +23,9 @@ public class SquarePrism extends ThreeDShape {
     public double getVolume() {
         return getBaseArea() * height;
     }
+
     @Override
     public String toString() {
-        return String.format("SquarePrism [edge length=%.2f, height=%.2f, base area=%.2f, volume=%.2f]",
-                             edgeLength, getHeight(), getBaseArea(), getVolume());
+        return String.format("SquarePrism [edge length=%.2f, height=%.2f, base area=%.2f, volume=%.2f]", edgeLength, getHeight(), getBaseArea(), getVolume());
     }
 }

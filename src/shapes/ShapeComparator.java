@@ -2,8 +2,7 @@ package shapes;
 
 import java.util.Comparator;
 
-public interface ShapeComparator extends Comparator<ThreeDShape> {
-}
+public interface ShapeComparator extends Comparator<ThreeDShape> { }
 
 class BaseAreaComparator implements ShapeComparator {
     @Override

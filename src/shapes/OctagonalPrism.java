@@ -28,7 +28,6 @@ public class OctagonalPrism extends ThreeDShape {
 
     @Override
     public String toString() {
-        return String.format("OctagonalPrism [edge length=%.2f, height=%.2f, base area=%.2f, volume=%.2f]",
-                edgeLength, getHeight(), getBaseArea(), getVolume());
+        return String.format("OctagonalPrism [edge length=%.2f, height=%.2f, base area=%.2f, volume=%.2f]", edgeLength, getHeight(), getBaseArea(), getVolume());
     }
 }

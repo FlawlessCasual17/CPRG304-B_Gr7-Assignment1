@@ -1,6 +1,7 @@
 package utilities;
 
 import shapes.ThreeDShape;
+
 import java.util.Comparator;
 
 public class CountingSort {
@@ -8,43 +9,41 @@ public class CountingSort {
         if (array.length == 0) return;
 
         // Find the maximum height
-        double maxHeight = array[0].getHeight();
-        for (ThreeDShape shape : array) {
-            if (shape.getHeight() > maxHeight) {
+        var maxHeight = array[0].getHeight();
+        for (var shape : array)
+            if (shape.getHeight() > maxHeight)
                 maxHeight = shape.getHeight();
-            }
-        }
 
         // Use the height as the key for counting sort
-        int max = (int) maxHeight;
-        ThreeDShape[] output = new ThreeDShape[array.length];
-        int[] count = new int[max + 1];
+        var max = (int)maxHeight;
+        var output = new ThreeDShape[array.length];
+        var count = new int[max + 1];
 
-        // Initialize count array
-        for (int i = 0; i <= max; ++i) {
-            count[i] = 0;
-        }
+        // Initialize a count array
+        for (var i = 0; i <= max; ++i) count[i] = 0;
 
         // Store the count of each element
-        for (ThreeDShape shape : array) {
-            count[(int) shape.getHeight()]++;
-        }
+        for (ThreeDShape shape : array)
+            count[(int)shape.getHeight()]++;
 
-        // Modify count array
-        for (int i = 1; i <= max; ++i) {
+        // Modify a count array
+        for (int i = 1; i <= max; ++i)
             count[i] += count[i - 1];
-        }
 
         // Build the output array
         for (int i = array.length - 1; i >= 0; i--) {
-            ThreeDShape shape = array[i];
-            output[count[(int) shape.getHeight()] - 1] = shape;
-            count[(int) shape.getHeight()]--;
+            var shape = array[i];
+            output[count[(int)shape.getHeight()] - 1] = shape;
+            count[(int)shape.getHeight()]--;
         }
 
         // Copy the output array to the original array
-        for (int i = 0; i < array.length; i++) {
+        //noinspection ManualArrayCopy
+        for (int i = 0; i < array.length; i++)
             array[i] = output[i];
-        }
+        // We could alternatively use this:
+        // System.arraycopy(output, 0, array, 0, array.length);
+        // ↗️ This should be faster since it
+        // directly accesses the API of the JVM.
     }
 }
