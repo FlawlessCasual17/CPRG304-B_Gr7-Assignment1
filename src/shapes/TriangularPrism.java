@@ -1,31 +1,24 @@
 package shapes;
 
 public class TriangularPrism extends ThreeDShape {
-    private double edgeLength;
-    private double height;
+    private final double edgeLength, height;
 
     public TriangularPrism(double edgeLength, double height) {
-        this.edgeLength = edgeLength;
-        this.height = height;
+        this.edgeLength = edgeLength; this.height = height;
     }
 
     @Override
-    public double getHeight() {
-        return height;
-    }
+    public double getHeight() { return height; }
 
     @Override
-    public double getBaseArea() {
-        return (Math.sqrt(3) / 4) * edgeLength * edgeLength;
-    }
+    public double getBaseArea() { return (Math.sqrt(3) / 4) * edgeLength * edgeLength; }
 
     @Override
-    public double getVolume() {
-        return getBaseArea() * height;
-    }
+    public double getVolume() { return getBaseArea() * height; }
 
     @Override
     public String toString() {
-        return String.format("TriangularPrism [edge length=%.2f, height=%.2f, base area=%.2f, volume=%.2f]", edgeLength, getHeight(), getBaseArea(), getVolume());
+        return "TriangularPrism [edge length=%.2f, height=%.2f, base area=%.2f, volume=%.2f]"
+            .formatted(edgeLength, getHeight(), getBaseArea(), getVolume());
     }
 }

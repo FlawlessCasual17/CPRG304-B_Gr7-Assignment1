@@ -1,7 +1,6 @@
 package comparators;
 
-import shapes.ThreeDShape;
-import shapes.ShapeComparator;
+import shapes.*;
 
 public class VolumeComparator implements ShapeComparator {
     @Override

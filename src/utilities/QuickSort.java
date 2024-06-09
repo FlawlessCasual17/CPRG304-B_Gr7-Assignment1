@@ -9,21 +9,20 @@ public class QuickSort {
 
     private static <T> void quickSort(T[] array, int low, int high, Comparator<? super T> comparator) {
         if (low < high) {
-            int pivotIndex = partition(array, low, high, comparator);
+            var pivotIndex = partition(array, low, high, comparator);
             quickSort(array, low, pivotIndex - 1, comparator);
             quickSort(array, pivotIndex + 1, high, comparator);
         }
     }
 
     private static <T> int partition(T[] array, int low, int high, Comparator<? super T> comparator) {
-        T pivot = array[high];
-        int i = low - 1;
-        for (int j = low; j < high; j++) {
+        var pivot = array[high];
+        var i = low - 1;
+        for (var j = low; j < high; j++)
             if (comparator.compare(array[j], pivot) <= 0) {
-                i++;
-                swap(array, i, j);
+                i++; swap(array, i, j);
             }
-        }
+
         swap(array, i + 1, high);
         return i + 1;
     }

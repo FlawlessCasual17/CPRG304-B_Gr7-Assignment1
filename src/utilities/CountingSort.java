@@ -23,15 +23,15 @@ public class CountingSort {
         for (var i = 0; i <= max; ++i) count[i] = 0;
 
         // Store the count of each element
-        for (ThreeDShape shape : array)
+        for (var shape : array)
             count[(int)shape.getHeight()]++;
 
         // Modify a count array
-        for (int i = 1; i <= max; ++i)
+        for (var i = 1; i <= max; ++i)
             count[i] += count[i - 1];
 
         // Build the output array
-        for (int i = array.length - 1; i >= 0; i--) {
+        for (var i = array.length - 1; i >= 0; i--) {
             var shape = array[i];
             output[count[(int)shape.getHeight()] - 1] = shape;
             count[(int)shape.getHeight()]--;
@@ -39,7 +39,7 @@ public class CountingSort {
 
         // Copy the output array to the original array
         //noinspection ManualArrayCopy
-        for (int i = 0; i < array.length; i++)
+        for (var i = 0; i < array.length; i++)
             array[i] = output[i];
         // We could alternatively use this:
         // System.arraycopy(output, 0, array, 0, array.length);

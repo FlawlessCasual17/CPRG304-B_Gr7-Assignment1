@@ -1,18 +1,14 @@
 package shapes;
 
 public class OctagonalPrism extends ThreeDShape {
-    private double edgeLength;
-    private double height;
+    private final double edgeLength, height;
 
     public OctagonalPrism(double edgeLength, double height) {
-        this.edgeLength = edgeLength;
-        this.height = height;
+        this.edgeLength = edgeLength; this.height = height;
     }
 
     @Override
-    public double getHeight() {
-        return height;
-    }
+    public double getHeight() { return height; }
 
     @Override
     public double getBaseArea() {
@@ -20,11 +16,8 @@ public class OctagonalPrism extends ThreeDShape {
         return 2 * (1 + Math.sqrt(2)) * edgeLength * edgeLength;
     }
 
-    @Override
-    public double getVolume() {
-        // Volume = base area * height
-        return getBaseArea() * height;
-    }
+    @Override                   // Volume = base area * height
+    public double getVolume() { return getBaseArea() * height; }
 
     @Override
     public String toString() {

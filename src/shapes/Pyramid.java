@@ -1,8 +1,7 @@
 package shapes;
 
 public class Pyramid extends ThreeDShape {
-    private double edgeLength;
-    private double height;
+    private final double edgeLength, height;
 
     public Pyramid(double edgeLength, double height) {
         this.edgeLength = edgeLength;
@@ -10,22 +9,17 @@ public class Pyramid extends ThreeDShape {
     }
 
     @Override
-    public double getHeight() {
-        return height;
-    }
+    public double getHeight() { return height; }
 
     @Override
-    public double getBaseArea() {
-        return Math.pow(edgeLength, 2);
-    }
+    public double getBaseArea() { return Math.pow(edgeLength, 2); }
 
     @Override
-    public double getVolume() {
-        return (1.0 / 3) * getBaseArea() * height;
-    }
+    public double getVolume() { return (1.0 / 3) * getBaseArea() * height; }
 
     @Override
     public String toString() {
-        return String.format("Pyramid [edge length=%.2f, height=%.2f, base area=%.2f, volume=%.2f]", edgeLength, getHeight(), getBaseArea(), getVolume());
+        return "Pyramid [edge length=%.2f, height=%.2f, base area=%.2f, volume=%.2f]"
+            .formatted(edgeLength, getHeight(), getBaseArea(), getVolume());
     }
 }

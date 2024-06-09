@@ -12,36 +12,37 @@ import utilities.*;
 import java.util.Arrays;
 
 public class AppDriver {
-
     public static void main(String[] args) {
-        String fileName = null;
-        String compareType = null;
-        String sortAlgorithm = null;
+        String fileName = null, compareType = null, sortAlgorithm = null;
 
-        for (String arg : args) {
-            if (arg.startsWith("-f") || arg.startsWith("-F")) {
-                fileName = arg.substring(2);
-            } else if (arg.startsWith("-t") || arg.startsWith("-T")) {
-                compareType = arg.substring(2);
-            } else if (arg.startsWith("-s") || arg.startsWith("-S")) {
-                sortAlgorithm = arg.substring(2);
+        for (var arg : args)
+            switch (arg.substring(0, 2)) { // A switch statement is faster
+                case "-f", "-F" ->
+                    fileName = arg.substring(2);
+                case "-t", "-T" ->
+                    compareType = arg.substring(2);
+                case "-s", "-S" ->
+                    sortAlgorithm = arg.substring(2);
             }
-        }
 
         if (fileName == null || compareType == null || sortAlgorithm == null) {
-            System.out.println("Usage: java -jar Sort.jar -f<file_name> -t<comparison type> -s<sorting algorithm>");
+            System.out.println("""
+                USAGE
+
+                java -jar Sort.jar -f<file_name> -t<comparison type> -s<sorting algorithm>
+                """
+            );
             return;
         }
 
-        ThreeDShape[] shapes = readShapesFromFile(fileName);
-        if (shapes == null) {
-            return;
-        }
+        var shapes = readShapesFromFile(fileName);
+        if (shapes == null) return;
 
         Comparator<ThreeDShape> comparator;
         switch (compareType.toLowerCase()) {
             case "h":
-                comparator = Comparator.comparingDouble(ThreeDShape::getHeight).reversed();
+                comparator = Comparator
+                    .comparingDouble(ThreeDShape::getHeight).reversed();
                 break;
             case "v":
                 comparator = new VolumeComparator().reversed();
@@ -60,15 +61,15 @@ public class AppDriver {
     }
 
     private static ThreeDShape[] readShapesFromFile(String fileName) {
-        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
-            int numShapes = Integer.parseInt(br.readLine().trim());
-            ThreeDShape[] shapes = new ThreeDShape[numShapes];
+        try (var br = new BufferedReader(new FileReader(fileName))) {
+            var numShapes = Integer.parseInt(br.readLine().trim());
+            var shapes = new ThreeDShape[numShapes];
 
-            for (int i = 0; i < numShapes; i++) {
-                String[] tokens = br.readLine().split(" ");
-                String shapeType = tokens[0];
-                double height = Double.parseDouble(tokens[1]);
-                double dimension = Double.parseDouble(tokens[2]);
+            for (var i = 0; i < numShapes; i++) {
+                var tokens = br.readLine().split(" ");
+                var shapeType = tokens[0];
+                var height = Double.parseDouble(tokens[1]);
+                var dimension = Double.parseDouble(tokens[2]);
 
                 switch (shapeType) {
                     case "Cylinder":
@@ -80,16 +81,8 @@ public class AppDriver {
                     case "Pyramid":
                         shapes[i] = new Pyramid(dimension, height);
                         break;
-                    case "SquarePrism":
-                        shapes[i] = new SquarePrism(dimension, height);
-                        break;
-                    case "OctagonalPrism":
-                        shapes[i] = new SquarePrism(dimension, height);
-                        break;
-                    case "TriangularPrism":
-                        shapes[i] = new SquarePrism(dimension, height);
-                        break;
-                    case "PentagonalPrism":
+                    case "SquarePrism", "OctagonalPrism":
+                    case "TriangularPrism", "PentagonalPrism":
                         shapes[i] = new SquarePrism(dimension, height);
                         break;
                     default:
@@ -100,13 +93,13 @@ public class AppDriver {
             return shapes;
         }
         catch (IOException e) {
-            e.printStackTrace();
+            System.out.print(Arrays.toString(e.getStackTrace()));
             return null;
         }
     }
 
     private static void sortShapes(ThreeDShape[] shapes, Comparator<ThreeDShape> comparator, String sortAlgorithm) {
-        long startTime = System.currentTimeMillis();
+        var startTime = System.currentTimeMillis();
         switch (sortAlgorithm.toLowerCase()) {
             case "b":
                 BubbleSort.sort(shapes, comparator);
@@ -130,15 +123,15 @@ public class AppDriver {
                 System.out.println("Unknown sorting algorithm: " + sortAlgorithm);
                 return;
         }
-        long endTime = System.currentTimeMillis();
-        System.out.println("Sorting time: " + (endTime - startTime) + " milliseconds");
+        var endTime = System.currentTimeMillis();
+        System.out.printf("\nSorting time: %d milliseconds%n\n", endTime - startTime);
     }
 
     private static void printSortedShapes(ThreeDShape[] shapes) {
-        int length = shapes.length;
+        var length = shapes.length;
         System.out.println("First sorted shape: " + shapes[0]);
         if (length > 1000) {
-            for (int i = 1000; i < length; i += 1000) {
+            for (var i = 1000; i < length; i += 1000) {
                 System.out.println("Shape at position " + i + ": " + shapes[i]);
             }
         }

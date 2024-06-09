@@ -1,18 +1,14 @@
 package shapes;
 
 public class PentagonalPrism extends ThreeDShape {
-    private double edgeLength;
-    private double height;
+    private final double edgeLength, height;
 
     public PentagonalPrism(double edgeLength, double height) {
-        this.edgeLength = edgeLength;
-        this.height = height;
+        this.edgeLength = edgeLength; this.height = height;
     }
 
     @Override
-    public double getHeight() {
-        return height;
-    }
+    public double getHeight() { return height; }
 
     @Override
     public double getBaseArea() {
