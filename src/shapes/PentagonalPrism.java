@@ -13,7 +13,7 @@ public class PentagonalPrism extends ThreeDShape {
     @Override
     public double getBaseArea() {
         // Base area of a regular pentagon
-        double apothem = edgeLength / (2 * Math.tan(Math.PI / 5));
+        var apothem = edgeLength / (2 * Math.tan(Math.PI / 5));
         return (5 * edgeLength * apothem) / 2;
     }
 

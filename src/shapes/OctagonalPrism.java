@@ -16,8 +16,11 @@ public class OctagonalPrism extends ThreeDShape {
         return 2 * (1 + Math.sqrt(2)) * edgeLength * edgeLength;
     }
 
-    @Override                   // Volume = base area * height
-    public double getVolume() { return getBaseArea() * height; }
+    @Override
+    public double getVolume() {
+        // Volume = base area * height
+        return getBaseArea() * height;
+    }
 
     @Override
     public String toString() {

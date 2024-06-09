@@ -4,8 +4,7 @@ public class Pyramid extends ThreeDShape {
     private final double edgeLength, height;
 
     public Pyramid(double edgeLength, double height) {
-        this.edgeLength = edgeLength;
-        this.height = height;
+        this.edgeLength = edgeLength; this.height = height;
     }
 
     @Override

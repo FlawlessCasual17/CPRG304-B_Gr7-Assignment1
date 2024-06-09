@@ -4,33 +4,39 @@ import shapes.ThreeDShape;
 
 import java.util.Comparator;
 
+/**
+ * This class implements the counting sort algorithm for sorting an array of 3D shapes.
+ */
 public class CountingSort {
-    public static void sort(ThreeDShape[] array, Comparator<? super ThreeDShape> comparator) {
+    /**
+     * Sorts the specified array of 3D shapes using the given comparator.
+     *
+     * @param array     The array to sort
+     * @param comp      The comparator to use for sorting
+     */
+    public static void sort(ThreeDShape[] array, Comparator<? super ThreeDShape> comp) {
         if (array.length == 0) return;
 
-        // Find the maximum height
-        var maxHeight = array[0].getHeight();
+        // Compare the elements in the array
+        var max = array[0];
         for (var shape : array)
-            if (shape.getHeight() > maxHeight)
-                maxHeight = shape.getHeight();
+            if (comp.compare(shape, max) > 0) max = shape;
 
-        // Use the height as the key for counting sort
-        var max = (int)maxHeight;
-        var output = new ThreeDShape[array.length];
-        var count = new int[max + 1];
+        // Use the height of the maximum element as the key for counting sort
+        var maxHeight = max.getHeight();
 
         // Initialize a count array
-        for (var i = 0; i <= max; ++i) count[i] = 0;
+        var count = new int[(int)(maxHeight + 1)];
+        for (var i = 0; i <= maxHeight; ++i) count[i] = 0;
 
         // Store the count of each element
-        for (var shape : array)
-            count[(int)shape.getHeight()]++;
+        for (var shape : array) count[(int)shape.getHeight()]++;
 
         // Modify a count array
-        for (var i = 1; i <= max; ++i)
-            count[i] += count[i - 1];
+        for (var i = 1; i <= maxHeight; ++i) count[i] += count[i - 1];
 
         // Build the output array
+        var output = new ThreeDShape[array.length];
         for (var i = array.length - 1; i >= 0; i--) {
             var shape = array[i];
             output[count[(int)shape.getHeight()] - 1] = shape;

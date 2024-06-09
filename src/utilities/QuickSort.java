@@ -2,24 +2,34 @@ package utilities;
 
 import java.util.Comparator;
 
+/**
+ * This class implements the quicksort algorithm for sorting an array of objects.
+ */
 public class QuickSort {
-    public static <T> void sort(T[] array, Comparator<? super T> comparator) {
-        quickSort(array, 0, array.length - 1, comparator);
+    /**
+     * Sorts the specified array of objects using the given comparator.
+     *
+     * @param array the array to sort
+     * @param comp the comparator to use for sorting
+     */
+    public static <T> void sort(T[] array, Comparator<? super T> comp) {
+        quickSort(array, 0, array.length - 1, comp);
     }
 
-    private static <T> void quickSort(T[] array, int low, int high, Comparator<? super T> comparator) {
-        if (low < high) {
-            var pivotIndex = partition(array, low, high, comparator);
-            quickSort(array, low, pivotIndex - 1, comparator);
-            quickSort(array, pivotIndex + 1, high, comparator);
-        }
-    }
-
-    private static <T> int partition(T[] array, int low, int high, Comparator<? super T> comparator) {
-        var pivot = array[high];
-        var i = low - 1;
+    /**
+     * Partitions the array around a pivot element.
+     *
+     * @param array     The array to swap elements in
+     * @param low       The lower index of the subarray to sort
+     * @param high      The higher index of the subarray to sort
+     * @param comp      The comparator to use for sorting
+     *
+     * @return          The index of the pivot element
+     */
+    private static <T> int part(T[] array, int low, int high, Comparator<? super T> comp) {
+        var pivot = array[high]; var i = low - 1;
         for (var j = low; j < high; j++)
-            if (comparator.compare(array[j], pivot) <= 0) {
+            if (comp.compare(array[j], pivot) <= 0) {
                 i++; swap(array, i, j);
             }
 
@@ -27,9 +37,30 @@ public class QuickSort {
         return i + 1;
     }
 
+    /**
+     * Swaps two elements in the array.
+     *
+     * @param array     The array to swap elements in
+     * @param i         The index of the first element
+     * @param j         The index of the second element
+     */
     private static <T> void swap(T[] array, int i, int j) {
-        T temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
+        var temp = array[i]; array[i] = array[j]; array[j] = temp;
+    }
+
+    /**
+     * Recursively sorts the array using the quicksort algorithm.
+     *
+     * @param array     The array to swap elements in
+     * @param low       The lower index of the subarray to sort
+     * @param high      The higher index of the subarray to sort
+     * @param comp      The comparator to use for sorting
+     */
+    private static <T> void quickSort(T[] array, int low, int high, Comparator<? super T> comp) {
+        if (low < high) {
+            var pivotIndex = part(array, low, high, comp);
+            quickSort(array, low, pivotIndex - 1, comp);
+            quickSort(array, pivotIndex + 1, high, comp);
+        }
     }
 }
