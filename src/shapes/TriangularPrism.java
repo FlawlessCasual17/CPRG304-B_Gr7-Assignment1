@@ -11,15 +11,15 @@ public class TriangularPrism extends ThreeDShape {
     /**
      * Constructs a new triangular prism with the given edge length and height.
      *
-     * @param edgeLength    The length of each the triangular base edge
+     * @param edgeLength    The length of each triangular base edge
      * @param height        The height of the prism
      *
      * @throws IllegalArgumentException If either edge length or height is non-positive
      */
     public TriangularPrism(double edgeLength, double height) {
-        if (edgeLength <= 0 || height <= 0) {
+        if (edgeLength <= 0 || height <= 0)
             throw new IllegalArgumentException("Edge length and height must be positive.");
-        }
+
         this.edgeLength = edgeLength; this.height = height;
     }
 

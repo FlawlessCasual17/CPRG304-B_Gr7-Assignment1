@@ -29,7 +29,8 @@ public abstract class ThreeDShape implements Comparable<ThreeDShape> {
     public abstract double getVolume();
 
     /**
-     * Compares this 3D shape to another 3D shape based on their height and base area.
+     * Compares this 3D shape to another 3D shape
+     * based on their height, base area, or volume.
      *
      * @param other        The other 3D shape to compare to
      *
