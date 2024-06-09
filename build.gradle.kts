@@ -6,23 +6,15 @@ plugins {
 group = "com.group7"
 version = "1.0-SNAPSHOT"
 
-repositories {
-    mavenCentral()
-}
+repositories { mavenCentral() }
 
-//dependencies {
-//    testImplementation(platform("org.junit:junit-bom:5.10.2"))
-//    testImplementation("org.junit.jupiter:junit-jupiter")
-//}
-//
-//tasks.test {
-//    useJUnitPlatform()
-//}
+sourceSets.main { java.srcDirs("src") }
 
 application.mainClass.set("appDomain.AppDriver")
 
 tasks.withType<Jar> {
-    manifest.attributes ("Main-Class" to "appDomain.AppDriver")
+    archiveFileName.set("Sort.jar")
+    manifest.attributes("Main-Class" to "appDomain.AppDriver")
 }
 
 tasks.register<JavaExec>("execJar") {
