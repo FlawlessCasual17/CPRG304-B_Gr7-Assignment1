@@ -1,0 +1,10 @@
+{
+    "netbeans.java.onSave.organizeImports": false,
+    "netbeans.java.imports.groups": [
+        "java",
+        "javax",
+        "org",
+        "com",
+        ""
+    ]
+}
