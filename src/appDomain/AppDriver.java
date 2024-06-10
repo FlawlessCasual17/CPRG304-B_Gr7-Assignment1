@@ -44,12 +44,12 @@ public class AppDriver {
 
                 java -jar 'build/libs/Sort.jar' -f<file_name> -t<compare_type> -s<shape_type>
 
+
                 3. Or using the **run** scripts
 
                 ./run -f<file_name> -t<compare_type> -s<shape_type>
 
                 .\\run.bat -f<file_name> -t<compare_type> -s<shape_type>
-
                 """
             );
             return;
