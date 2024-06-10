@@ -10,5 +10,6 @@
     // Tell mdl to stfu about numbering
     "markdownlint.config": {
         "ol-prefix": false
-    }
+    },
+    "java.configuration.updateBuildConfiguration": "disabled"
 }
