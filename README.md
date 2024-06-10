@@ -16,6 +16,6 @@ gradle execJar "--args= -f<file_name> -t<compare_type> -s<shape_type>"
 
 2. Running with `java`
 
-```ps1
+```bash
 java -jar 'build/libs/Sort.jar' -f<file_name> -t<compare_type> -s<shape_type>
 ```
