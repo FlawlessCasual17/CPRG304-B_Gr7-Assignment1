@@ -35,7 +35,21 @@ public class AppDriver {
             System.out.println("""
                 USAGE
 
-                java -jar Sort.jar -f<file_name> -t<comparison type> -s<sorting algorithm>
+                1. Running with Gradle
+
+                gradle execJar "--args= -f<file_name> -t<compare_type> -s<shape_type>"
+
+
+                2. Running with `java`
+
+                java -jar 'build/libs/Sort.jar' -f<file_name> -t<compare_type> -s<shape_type>
+
+                3. Or using the **run** scripts
+
+                ./run -f<file_name> -t<compare_type> -s<shape_type>
+
+                .\\run.bat -f<file_name> -t<compare_type> -s<shape_type>
+
                 """
             );
             return;
