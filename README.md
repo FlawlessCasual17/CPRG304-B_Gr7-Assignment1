@@ -19,3 +19,13 @@ gradle execJar "--args= -f<file_name> -t<compare_type> -s<shape_type>"
 ```bash
 java -jar 'build/libs/Sort.jar' -f<file_name> -t<compare_type> -s<shape_type>
 ```
+
+3. Or using the **run** scripts
+
+```bash
+./run -f<file_name> -t<compare_type> -s<shape_type>
+```
+
+```bat
+.\run.bat -f<file_name> -t<compare_type> -s<shape_type>
+```
