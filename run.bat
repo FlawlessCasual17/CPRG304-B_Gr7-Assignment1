@@ -6,8 +6,10 @@ if %errorlevel% neq 0 (
     exit 1
 )
 
-@rem Run gradle tasks (assuming gradlew is executable)
-"%~dp0gradlew.bat" clean build
+if not exist "%~dp0build\libs\Sort.jar" (
+    @rem Run gradle tasks (assuming gradlew is executable)
+    "%~dp0gradlew.bat" "clean" "build"
+)
 
 @rem Run the Sort.jar with all arguments passed to the script
 java -jar "%~dp0build\libs\Sort.jar"  %*
