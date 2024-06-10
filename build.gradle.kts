@@ -1,7 +1,7 @@
 plugins { id("java"); id("application") }
 
 group = "com.group7"
-version = "0.9"
+version = "1.0-SNAPSHOT"
 
 repositories { mavenCentral() }
 
@@ -20,3 +20,7 @@ tasks.register<JavaExec>("execJar") {
     classpath = files(tasks["jar"])
     args = listOf("fileName", "compareType", "shapeType")
 }
+
+
+
+
