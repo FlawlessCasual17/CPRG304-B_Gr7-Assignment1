@@ -6,7 +6,6 @@ if %errorlevel% neq 0 (
     exit 1
 )
 
-
 @rem Run gradle tasks (assuming gradlew is executable)
 "%~dp0gradlew.bat" clean build
 
