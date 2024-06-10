@@ -1,4 +1,4 @@
-# CRPG304-B_Gr7-Assignment1
+# CPRG304-B_Gr7-Assignment1
 
 ## Building (this should be first!)
 
