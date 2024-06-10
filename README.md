@@ -1,4 +1,4 @@
-# CPRG304-B_Gr7-Assignment1
+# Assignment 1 of Group 7 (CPRG304-B) 
 
 ## Building (this should be first!)
 
