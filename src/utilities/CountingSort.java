@@ -20,20 +20,24 @@ public class CountingSort {
         // Compare the elements in the array
         var max = array[0];
         for (var shape : array)
-            if (comp.compare(shape, max) > 0) max = shape;
+            if (comp.compare(shape, max) > 0)
+                max = shape;
 
         // Use the height of the maximum element as the key for counting sort
         var maxHeight = max.getHeight();
 
         // Initialize a count array
         var count = new int[(int)(maxHeight + 1)];
-        for (var i = 0; i <= maxHeight; ++i) count[i] = 0;
+        for (var i = 0; i <= maxHeight; ++i)
+            count[i] = 0;
 
         // Store the count of each element
-        for (var shape : array) count[(int)shape.getHeight()]++;
+        for (var shape : array)
+            count[(int)shape.getHeight()]++;
 
         // Modify a count array
-        for (var i = 1; i <= maxHeight; ++i) count[i] += count[i - 1];
+        for (var i = 1; i <= maxHeight; ++i)
+            count[i] += count[i - 1];
 
         // Build the output array
         var output = new ThreeDShape[array.length];
