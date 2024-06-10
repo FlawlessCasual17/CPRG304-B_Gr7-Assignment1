@@ -11,7 +11,7 @@
       <option name="taskNames">
         <list>
           <option value="execJar" />
-          <option value="&quot;-fres/shapes1.txt -tv -sc&quot;" />
+          <option value="&quot;--args=-fres/shapes1.txt -tv -sc&quot;" />
         </list>
       </option>
       <option name="vmOptions" />
