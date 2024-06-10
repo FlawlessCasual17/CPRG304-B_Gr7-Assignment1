@@ -90,7 +90,7 @@ public class Helpers {
                 QuickSort.sort(shapes, comp);
                 break;
             case "c":
-                CountingSort.sort(shapes, comp);
+                CountingSort.sort(shapes);
                 break;
             default:
                 System.out.println("Unknown sorting algorithm: " + sortAlgorithm);

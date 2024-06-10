@@ -2,45 +2,48 @@ package utilities;
 
 import shapes.ThreeDShape;
 
-import java.util.Comparator;
+import java.util.Arrays;
 
 /**
- * This class implements the counting sort algorithm for sorting an array of 3D shapes.
+ * This class implements the counting sort
+ * algorithm for sorting an array of 3D shapes.
  */
 public class CountingSort {
     /**
-     * Sorts the specified array of 3D shapes using the given comparator.
+     * Sorts the elements of an array by counting the number
+     * of each unique element occurrence in the array.
      *
      * @param array     The array to sort
-     * @param comp      The comparator to use for sorting
      */
-    public static void sort(ThreeDShape[] array, Comparator<? super ThreeDShape> comp) {
+    public static void sort(ThreeDShape[] array) {
         if (array.length == 0) return;
 
+        // Find the maximum height
+        var maxHeight = array[0].getHeight();
+
         // Compare the elements in the array
-        var max = array[0];
         for (var shape : array)
-            if (comp.compare(shape, max) > 0)
-                max = shape;
+            if (shape.getHeight() > maxHeight)
+                maxHeight = shape.getHeight();
 
         // Use the height of the maximum element as the key for counting sort
-        var maxHeight = max.getHeight();
+        var max = (int)maxHeight;
+        var output = new ThreeDShape[array.length];
 
         // Initialize a count array
-        var count = new int[(int)(maxHeight + 1)];
-        for (var i = 0; i <= maxHeight; ++i)
+        var count = new int[max + 1];
+        for (var i = 0; i <= max; ++i)
             count[i] = 0;
 
         // Store the count of each element
-        for (var shape : array)
-            count[(int)shape.getHeight()]++;
+        Arrays.stream(array)
+            .forEach(shape -> count[(int)shape.getHeight()]++);
 
         // Modify a count array
-        for (var i = 1; i <= maxHeight; ++i)
+        for (var i = 1; i <= max; ++i)
             count[i] += count[i - 1];
 
         // Build the output array
-        var output = new ThreeDShape[array.length];
         for (var i = array.length - 1; i >= 0; i--) {
             var shape = array[i];
             output[count[(int)shape.getHeight()] - 1] = shape;
@@ -48,12 +51,6 @@ public class CountingSort {
         }
 
         // Copy the output array to the original array
-        //noinspection ManualArrayCopy
-        for (var i = 0; i < array.length; i++)
-            array[i] = output[i];
-        // We could alternatively use this:
-        // System.arraycopy(output, 0, array, 0, array.length);
-        // ↗ This should be faster since it
-        // directly accesses the API of the JVM.
+        System.arraycopy(output, 0, array, 0, array.length);
     }
 }
