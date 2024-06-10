@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Check if java is installed
+if ! command -v java &> /dev/null; then
+    echo 'Please install java before running this app!'
+    exit 1
+fi
+
+# Get the script directory
+script_dir="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
+
+# Run gradle tasks (assuming gradlew is executable)
+"$script_dir/gradlew" clean build
+
+# Run the Sort.jar with all arguments passed to the script
+java -jar "$script_dir/build/libs/Sort.jar" "$@"
