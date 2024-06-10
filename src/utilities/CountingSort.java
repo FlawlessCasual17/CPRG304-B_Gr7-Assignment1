@@ -49,7 +49,7 @@ public class CountingSort {
             array[i] = output[i];
         // We could alternatively use this:
         // System.arraycopy(output, 0, array, 0, array.length);
-        // ↗️ This should be faster since it
+        // ↗ This should be faster since it
         // directly accesses the API of the JVM.
     }
 }
